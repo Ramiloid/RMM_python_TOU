@@ -63,11 +63,11 @@
    <attribute name="horizontalHeaderCascadingSectionResizes">
     <bool>false</bool>
    </attribute>
-   <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>90</number>
-   </attribute>
    <attribute name="horizontalHeaderMinimumSectionSize">
     <number>55</number>
+   </attribute>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>90</number>
    </attribute>
    <attribute name="verticalHeaderVisible">
     <bool>false</bool>
@@ -159,7 +159,7 @@
     <string>Выполнить задание</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_max_el">
+  <widget class="QLabel" name="label_negative">
    <property name="geometry">
     <rect>
      <x>11</x>
@@ -175,26 +175,10 @@
     </font>
    </property>
    <property name="text">
-    <string>Максимальный элемент:</string>
+    <string>Количество отрицательных :</string>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_sum">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>160</y>
-     <width>331</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Segoe UI</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Сумма единиц перед максимальным элементом:</string>
+   <property name="textFormat">
+    <enum>Qt::PlainText</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label_task_1">
@@ -213,16 +197,18 @@
     </font>
    </property>
    <property name="text">
-    <string>Если перед максимальным элементом таблицы расположены все единицы, то заменить максимальный
-                </string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Подсчитать количество отрицательных элементов в таблице и увеличить на это значение &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_task_2">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>170</x>
      <y>210</y>
-     <width>281</width>
+     <width>321</width>
      <height>21</height>
     </rect>
    </property>
@@ -233,7 +219,7 @@
     </font>
    </property>
    <property name="text">
-    <string>элемент таблицы на количество этих единиц</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;минимальный и максимальный элементы таблицы&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_error">

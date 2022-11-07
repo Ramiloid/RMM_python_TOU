@@ -39,9 +39,9 @@ class Main(QDialog):
             x = float(self.lineEdit_x.text())
             c = float(self.lineEdit_c.text())
             if x < 4:
-                answer = ((pow(x,2)+pow(a,2))*c)
+                answer = ((pow(x,2)+pow(a,2))*c)/(2*b)
             else:
-                answer = pow(x,3)-(a-b)
+                answer = pow(x,3)*(a-b)
             self.label_answer.setText('Ответ: ' + str(format(answer, '.2f')))
         except:
             self.label_answer.setText(
