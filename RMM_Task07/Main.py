@@ -37,10 +37,15 @@ class Form2(QtWidgets.QMainWindow):
         self.setWindowTitle('Детство')
 
         self.setWindowIcon(QtGui.QIcon('images/logo.png'))
-
+        if answers[0] is None:
+            self.checkBox.toggled()
+            checkBox = self.checkBox1
+            answers[0] = checkBox.isChecked
         # если ранее ответ был уже выбран, то показываем его заново
         if answers[0] is not None:
             self.label_selected.setText('Выбрано: ' + answers[0])
+
+
 
         # ставим события на radioButtons
         self.checkBox.toggled.connect(
@@ -80,9 +85,11 @@ class Form3(QtWidgets.QMainWindow):
         self.setWindowIcon(QtGui.QIcon('images/logo.png'))
         self.label_img.setPixmap(QPixmap('images/books.png'))
         self.label_img.setScaledContents(True)
-
+        if answers[1] is None:
+            self.label_selected.setText('Выбрано: ' + self.tableWidget.itemClicked.connect)
         if answers[1] is not None:
             self.label_selected.setText('Выбрано: ' + answers[1])
+
 
         self.tableWidget.itemClicked.connect(self.item_click)
         self.btn_back.clicked.connect(self.back)
@@ -109,6 +116,8 @@ class Form4(QtWidgets.QMainWindow):
         self.setWindowTitle('Юность')
 
         self.setWindowIcon(QtGui.QIcon('images/logo.png'))
+        if answers[2] is None:
+            self.label_selected.setText('Выбрано: ' + self.listWidget.itemClicked.connect)
 
         if answers[2] is not None:
             self.label_selected.setText('Выбрано: ' + answers[2])

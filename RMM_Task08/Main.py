@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-import math
 import sys
 from random import randint
 
-from PyQt5 import QtGui
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
+from my_class import MyClass
 
 
 class Main(QDialog):
@@ -18,7 +17,6 @@ class Main(QDialog):
 
         self.setWindowTitle('Сложные табличные вычисления в Python')
 
-        self.setWindowIcon(QtGui.QIcon('images/logo.png'))
         self.label_img.setPixmap(QPixmap('images/task.png'))
         self.label_img.setScaledContents(True)
 
@@ -41,36 +39,28 @@ class Main(QDialog):
 
     def solve(self):
 
+        a = int(self.input_a.text())
+        b = int(self.input_b.text())
+        x = int(self.input_x.text())
+
         if validation_of_data(self.tableWidget):
             i = 0
             j = 1
 
-            multiplication_of_k_i_minus_1 = 1
-            sum_of_k_i = 0
+            self.label_error.setText('')
+
+            task = MyClass()
 
             while i < self.tableWidget.rowCount():
                 item = self.tableWidget.item(i, 0).text()
-                sum_of_k_i += int(item)
+                task.add_value(int(item))
                 try:
-                    # item_minus_1 выкинет исключение при первой итерации,
-                    # поэтому перехватываем её и выводим none
-                    item_minus_1 = self.tableWidget.item(i - 1, 0).text()
-                    multiplication_of_k_i_minus_1 *= int(item_minus_1)
-                    difference_of_sin_of_k_i_and_cos_of_k_minus_1 = (math.sin(
-                        int(item)) ** 2 - math.cos(int(item_minus_1)) ** 2)
-
-                    answer = (((sum_of_k_i ** 2) ** (1 / 3.0)) /
-                              float(multiplication_of_k_i_minus_1)) * \
-                             difference_of_sin_of_k_i_and_cos_of_k_minus_1 ** 3
-
-                    self.tableWidget.setItem(i, j,
-                                             QTableWidgetItem(str(format(answer, ".10f"))))
-                except Exception:
-                    self.tableWidget.setItem(i, j, QTableWidgetItem('none'))
-
+                    self.tableWidget.setItem(i, j, QTableWidgetItem(str(format(task.solution(i, a, b, x), ".10f"))))
+                except:
+                    self.tableWidget.setItem(i, j, QTableWidgetItem(None))
+                    self.label_error.setText('Ошибка! Может быть, деление на 0')
                 i += 1
 
-            self.label_error.setText('')
         else:
             self.label_error.setText('Введены некорректные данные!')
 

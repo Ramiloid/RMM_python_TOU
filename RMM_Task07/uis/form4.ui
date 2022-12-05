@@ -115,6 +115,9 @@
     <property name="whatsThis">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
+    <property name="currentRow">
+     <number>0</number>
+    </property>
     <item>
      <property name="text">
       <string>Гуманитарная</string>
