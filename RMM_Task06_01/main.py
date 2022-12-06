@@ -1,11 +1,15 @@
 import os
 import sys
 from pathlib import Path
+
+import openpyxl as openpyxl
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
-from docxtpl import DocxTemplate
+from docx.shared import Mm
+from docxtpl import DocxTemplate, InlineImage
 from openpyxl import load_workbook
+
 
 class Main(QDialog):
     def __init__(self):
@@ -19,8 +23,13 @@ class Main(QDialog):
 
     def execute_wrd(self):
         document_path = Path(__file__).parent / "temper.docx"
+
         doc = DocxTemplate(document_path)
-        context = {"First_Last_Name": self.nameLine.text(),
+        s = Path(__file__).parent / 'images' / "icon.png"
+        filepath =  str(s)
+        imagen = InlineImage(doc, filepath, width=Mm(5.0),height=Mm(5.0))
+        context = {"logo": imagen,
+                   "First_Last_Name": self.nameLine.text(),
                    "Employe": self.employeLine.text(),
                    "Company": self.companyLine.text(),
                    "Telega": self.telegramLine.text(),
@@ -38,6 +47,12 @@ class Main(QDialog):
         ws['B6'] = self.companyLine.text()
         ws['B8'] = self.telegramLine.text()
         ws['B9'] = self.instagramLine.text()
+        print(Path(__file__).parent / 'images' / "icon.png")
+        img = openpyxl.drawing.image.Image(Path(__file__).parent / 'images' / "Free_Icon.jpg")
+        img.anchor = 'C1'
+        img.width = 40
+        img.height = 40
+        ws.add_image(img)
         wb.save(Path(__file__).parent / "generated.xlsx")
         wb.close()
         os.system('start generated.xlsx')
